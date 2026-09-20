@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP3 Music Downloader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div class="language-bar">
+    <label for="languageSelect" data-i18n="language">Language</label>
+    <select id="languageSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="ur">اردو</option>
+        <option value="hi">हिन्दी</option>
+        <option value="fr">Français</option>
+        <option value="ar">العربية</option>
+    </select>
+</div>
+
+<div class="main">
+
+    <div class="logo">
+        <h1>MP3 JaduLoader</h1>
+    </div>
+
+   <div class="search-box">
+        <input type="text" id="url" placeholder="Input Keywords or paste Youtube URL here ..." autocomplete="off">
+     
+
+        <button id="fetchBtn" data-i18n="searchButton">
+            Search
+        </button>
+    </div>
+    
+    <div id="suggestBox" class="suggest-box hidden"></div>
+
+    <div id="loader" class="loader hidden"></div>
+
+    <div id="results"></div>
+
+</div>
+
+<div class="content-section">
+
+    <h2 data-i18n="mainHeading">MP3 - JaduLoader Free MP3 Music Downloads</h2>
+
+    <p data-i18n="intro1">
+        MP3Juice is the most popular music downloading tool and free mp3 search engine.
+        You can convert and download YouTube music and videos for free with high speed.
+    </p>
+
+    <p data-i18n="intro2">
+        Type your query in the search box and click the search button.
+        Within a few seconds results will appear with MP3, MP4 and Play options.
+    </p>
+
+    <p data-i18n="intro3">
+        You can also paste a YouTube video URL and instantly convert it into MP3 format.
+    </p>
+
+    <h2 data-i18n="whyHeading">Why Use JaduLoader?</h2>
+
+    <ul>
+        <li data-i18n="feature1">Unlimited MP3, MP4 Downloads</li>
+        <li data-i18n="feature2">Fast Conversion Speed</li>
+        <li data-i18n="feature3">HD Audio Quality</li>
+        <li data-i18n="feature4">No Registration Required</li>
+        <li data-i18n="feature5">Mobile Friendly Design</li>
+        <li data-i18n="feature6">Play Audio Before Download</li>
+        <li data-i18n="feature7">Supports MP3 &amp; MP4</li>
+        <li data-i18n="feature8">Simple Interface</li>
+    </ul>
+
+    <h2 data-i18n="howHeading">How To Download MP3?</h2>
+
+    <ol>
+        <li data-i18n="step1">Search any song name</li>
+        <li data-i18n="step2">Select your result</li>
+        <li data-i18n="step3">Click MP3 button</li>
+        <li data-i18n="step4">Wait few seconds</li>
+        <li data-i18n="step5">Download starts automatically</li>
+    </ol>
+
+</div>
+
+<footer class="footer">
+
+    <!-- Main footer buttons -->
+    <div class="footer-links footer-main-links">
+        <a href="#" onclick="openModal('contactModal'); return false;" data-i18n="contact">Contact</a>
+
+        <a href="#" onclick="openModal('copyrightModal'); return false;" data-i18n="copyrightClaims">
+            Copyright Claims
+        </a>
+
+        <a href="#" onclick="openModal('termsModal'); return false;" data-i18n="terms">Terms of Service</a>
+
+        <a href="#" onclick="openModal('privacyModal'); return false;" data-i18n="privacy">Privacy Policy</a>
+    </div>
+
+<div class="footer-social">
+
+    <a
+        class="instagram-btn"
+        href="https://www.instagram.com/hasnain_satti_x?stkn=cTFiamVrbHpud3Rk"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-i18n="instagram"
+    >
+        Instagram
+    </a>
+
+    <a
+        class="youtube-btn"
+        href="https://youtube.com/@jadueditz-1?si=BFI6hK5pqkiEWuJ_"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-i18n="youtube"
+    >
+        YouTube
+    </a>
+
+</div>
+
+<p data-i18n="copyright">
+    © 2026 JaduLoader - Free MP3 Music Downloader
+</p>
+
+</footer>
+
+
+
+
+<script>
+
+
+
+
+const translations = {
+    en: {
+        language: "Language",
+        searchPlaceholder: "Search And Paste Your Favorite Song Link",
+        searchButton: "Search",
+        mainHeading: "MP3 - JaduLoader Free MP3 Music Downloads",
+        intro1: "MP3Juice is the most popular music downloading tool and free mp3 search engine. You can convert and download YouTube music and videos for free with high speed.",
+        intro2: "Type your query in the search box and click the search button. Within a few seconds results will appear with MP3, MP4 and Play options.",
+        intro3: "You can also paste a YouTube video URL and instantly convert it into MP3 format.",
+        whyHeading: "Why Use JaduLoader?",
+        feature1: "Unlimited MP3, MP4 Downloads",
+        feature2: "Fast Conversion Speed",
+        feature3: "HD Audio Quality",
+        feature4: "No Registration Required",
+        feature5: "Mobile Friendly Design",
+        feature6: "Play Audio Before Download",
+        feature7: "Supports MP3 & MP4",
+        feature8: "Simple Interface",
+        howHeading: "How To Download MP3?",
+        step1: "Search any song name",
+        step2: "Select your result",
+        step3: "Click MP3 button",
+        step4: "Wait few seconds",
+        step5: "Download starts automatically",
+        contact: "Contact",
+        copyrightClaims: "Copyright Claims",
+        terms: "Terms of Service",
+        privacy: "Privacy Policy",
+        instagram: "Instagram",
+        youtube: "YouTube",
+        copyright: "© 2026 JaduLoader - Free MP3 Music Downloader",
+        contactModalTitle: "Contact Us",
+        termsModalTitle: "Terms of Service",
+        privacyModalTitle: "Privacy Policy",
+        copyrightClaimsTitle: "Copyright Claims"
+    },
+    ur: {
+        language: "زبان",
+        searchPlaceholder: "تلاش کریں اور اپنا پسندیدہ گانا لنک پیسٹ کریں",
+        searchButton: "تلاش",
+        mainHeading: "MP3 - JaduLoader مفت MP3 موسیقی ڈاؤن لوڈ",
+        intro1: "MP3Juice سب سے مشہور موسیقی ڈاؤن لوڈ کرنے والا ٹول اور مفت mp3 تلاش کی انجن ہے۔ آپ YouTube موسیقی اور ویڈیوز کو مفت میں تیز رفتاری سے تبدیل اور ڈاؤن لوڈ کر سکتے ہیں۔",
+        intro2: "تلاش کے ڈبے میں اپنی تلاش درج کریں اور تلاش کے بٹن پر کلک کریں۔ کچھ سیکنڈ میں MP3، MP4 اور پلے کے اختیارات کے ساتھ نتائج ظاہر ہوں گے۔",
+        intro3: "آپ YouTube ویڈیو کا URL پیسٹ کر سکتے ہیں اور اسے فوری طور پر MP3 فارمیٹ میں تبدیل کر سکتے ہیں۔",
+        whyHeading: "JaduLoader کیوں استعمال کریں؟",
+        feature1: "لامحدود MP3، MP4 ڈاؤن لوڈ",
+        feature2: "تیز تبدیلی کی رفتار",
+        feature3: "HD آڈیو معیار",
+        feature4: "کوئی رجسٹریشن ضروری نہیں",
+        feature5: "موبائل دوست ڈیزائن",
+        feature6: "ڈاؤن لوڈ سے پہلے آڈیو چلائیں",
+        feature7: "MP3 اور MP4 کو سپورٹ کرتا ہے",
+        feature8: "سادہ انٹرفیس",
+        howHeading: "MP3 کیسے ڈاؤن لوڈ کریں؟",
+        step1: "کوئی بھی گانے کا نام تلاش کریں",
+        step2: "اپنے نتیجے کو منتخب کریں",
+        step3: "MP3 بٹن پر کلک کریں",
+        step4: "کچھ سیکنڈ انتظار کریں",
+        step5: "ڈاؤن لوڈ خود بخود شروع ہو جاتا ہے",
+        contact: "رابطہ",
+        copyrightClaims: "کاپی رائٹ دعویٰ",
+        terms: "خدمات کی شرائط",
+        privacy: "رازداری کی پالیسی",
+        instagram: "انسٹاگرام",
+        youtube: "یوٹیوب",
+        copyright: "© 2026 JaduLoader - مفت MP3 موسیقی ڈاؤن لوڈر",
+        contactModalTitle: "ہمسے رابطہ کریں",
+        termsModalTitle: "خدمات کی شرائط",
+        privacyModalTitle: "رازداری کی پالیسی",
+        copyrightClaimsTitle: "کاپی رائٹ دعویٰ"
+    },
+    hi: {
+        language: "भाषा",
+        searchPlaceholder: "खोजें और अपना पसंदीदा गाना लिंक पेस्ट करें",
+        searchButton: "खोजें",
+        mainHeading: "MP3 - JaduLoader मुफ्त MP3 संगीत डाउनलोड",
+        intro1: "MP3Juice सबसे लोकप्रिय संगीत डाउनलोड करने वाला उपकरण और मुफ्त mp3 खोज इंजन है। आप YouTube संगीत और वीडियो को मुफ्त में तेजी से परिवर्तित और डाउनलोड कर सकते हैं।",
+        intro2: "खोज बॉक्स में अपनी खोज दर्ज करें और खोज बटन पर क्लिक करें। कुछ सेकंड में MP3, MP4 और प्ले विकल्पों के साथ परिणाम दिखाई देंगे।",
+        intro3: "आप YouTube वीडियो URL को पेस्ट कर सकते हैं और इसे तुरंत MP3 फॉर्मेट में परिवर्तित कर सकते हैं।",
+        whyHeading: "JaduLoader का उपयोग क्यों करें?",
+        feature1: "असीमित MP3, MP4 डाउनलोड",
+        feature2: "तेजी से रूपांतरण",
+        feature3: "HD ऑडियो गुणवत्ता",
+        feature4: "कोई पंजीकरण आवश्यक नहीं",
+        feature5: "मोबाइल के अनुकूल डिजाइन",
+        feature6: "डाउनलोड से पहले ऑडियो चलाएं",
+        feature7: "MP3 और MP4 का समर्थन करता है",
+        feature8: "सरल इंटरफेस",
+        howHeading: "MP3 कैसे डाउनलोड करें?",
+        step1: "कोई गीत नाम खोजें",
+        step2: "अपना परिणाम चुनें",
+        step3: "MP3 बटन पर क्लिक करें",
+        step4: "कुछ सेकंड प्रतीक्षा करें",
+        step5: "डाउनलोड अपने आप शुरू हो जाता है",
+        contact: "संपर्क",
+        copyrightClaims: "कॉपीराइट दावे",
+        terms: "सेवा की शर्तें",
+        privacy: "गोपनीयता नीति",
+        instagram: "इंस्टाग्राम",
+        youtube: "यूट्यूब",
+        copyright: "© 2026 JaduLoader - मुफ्त MP3 संगीत डाउनलोडर",
+        contactModalTitle: "हमसे संपर्क करें",
+        termsModalTitle: "सेवा की शर्तें",
+        privacyModalTitle: "गोपनीयता नीति",
+        copyrightClaimsTitle: "कॉपीराइट दावे"
+    },
+    fr: {
+        language: "Langue",
+        searchPlaceholder: "Rechercher et coller votre lien de chanson préféré",
+        searchButton: "Rechercher",
+        mainHeading: "MP3 - JaduLoader Téléchargements de musique MP3 gratuits",
+        intro1: "MP3Juice est l'outil de téléchargement de musique le plus populaire et le moteur de recherche mp3 gratuit. Vous pouvez convertir et télécharger la musique et les vidéos YouTube gratuitement à grande vitesse.",
+        intro2: "Entrez votre recherche dans la zone de recherche et cliquez sur le bouton de recherche. En quelques secondes, les résultats s'affichent avec les options MP3, MP4 et Lecture.",
+        intro3: "Vous pouvez également coller une URL de vidéo YouTube et la convertir instantanément au format MP3.",
+        whyHeading: "Pourquoi utiliser JaduLoader?",
+        feature1: "Téléchargements illimités de MP3 et MP4",
+        feature2: "Vitesse de conversion rapide",
+        feature3: "Qualité audio HD",
+        feature4: "Aucune inscription requise",
+        feature5: "Conception adaptée aux mobiles",
+        feature6: "Lire l'audio avant de télécharger",
+        feature7: "Supporte MP3 et MP4",
+        feature8: "Interface simple",
+        howHeading: "Comment télécharger un MP3?",
+        step1: "Rechercher n'importe quel nom de chanson",
+        step2: "Sélectionnez votre résultat",
+        step3: "Cliquez sur le bouton MP3",
+        step4: "Attendre quelques secondes",
+        step5: "Le téléchargement commence automatiquement",
+        contact: "Contact",
+        copyrightClaims: "Réclamations de droits d'auteur",
+        terms: "Conditions d'utilisation",
+        privacy: "Politique de confidentialité",
+        instagram: "Instagram",
+        youtube: "YouTube",
+        copyright: "© 2026 JaduLoader - Téléchargeur de musique MP3 gratuit",
+        contactModalTitle: "Nous contacter",
+        termsModalTitle: "Conditions d'utilisation",
+        privacyModalTitle: "Politique de confidentialité",
+        copyrightClaimsTitle: "Réclamations de droits d'auteur"
+    },
+    ar: {
+        language: "اللغة",
+        searchPlaceholder: "ابحث والصق رابط أغنيتك المفضلة",
+        searchButton: "بحث",
+        mainHeading: "MP3 - JaduLoader تنزيلات الموسيقى MP3 المجانية",
+        intro1: "MP3Juice هي أشهر أداة تنزيل موسيقى ومحرك بحث mp3 مجاني. يمكنك تحويل وتنزيل موسيقى ومقاطع فيديو YouTube مجانًا بسرعة عالية.",
+        intro2: "اكتب بحثك في مربع البحث وانقر على زر البحث. في غضون بضع ثوان ستظهر النتائج مع خيارات MP3 و MP4 والتشغيل.",
+        intro3: "يمكنك أيضًا لصق رابط فيديو YouTube وتحويله على الفور إلى صيغة MP3.",
+        whyHeading: "لماذا تستخدم JaduLoader؟",
+        feature1: "تنزيلات MP3 و MP4 غير محدودة",
+        feature2: "سرعة التحويل السريعة",
+        feature3: "جودة الصوت HD",
+        feature4: "لا يتطلب تسجيل",
+        feature5: "تصميم سهل الاستخدام على الهاتف المحمول",
+        feature6: "تشغيل الصوت قبل التنزيل",
+        feature7: "يدعم MP3 و MP4",
+        feature8: "واجهة بسيطة",
+        howHeading: "كيفية تنزيل MP3؟",
+        step1: "ابحث عن أي اسم أغنية",
+        step2: "حدد نتيجتك",
+        step3: "انقر على زر MP3",
+        step4: "انتظر بضع ثوان",
+        step5: "يبدأ التنزيل تلقائيًا",
+        contact: "اتصل بنا",
+        copyrightClaims: "مطالبات حقوق النشر",
+        terms: "شروط الخدمة",
+        privacy: "سياسة الخصوصية",
+        instagram: "إنستاجرام",
+        youtube: "يوتيوب",
+        copyright: "© 2026 JaduLoader - منصة تنزيل الموسيقى MP3 المجانية",
+        contactModalTitle: "اتصل بنا",
+        termsModalTitle: "شروط الخدمة",
+        privacyModalTitle: "سياسة الخصوصية",
+        copyrightClaimsTitle: "مطالبات حقوق النشر"
+    }
+};
+
+function applyLanguage(lang) {
+    const t = translations[lang] || translations.en;
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === "ur" || lang === "ar") ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (t[key]) el.textContent = t[key];
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (t[key]) el.placeholder = t[key];
+    });
+
+    document.querySelectorAll("#languageSelect, #languageSelectBottom").forEach(select => {
+        select.value = lang;
+    });
+
+    localStorage.setItem("jaduLoaderLanguage", lang);
+}
+
+const savedLanguage = localStorage.getItem("jaduLoaderLanguage") || "en";
+applyLanguage(savedLanguage);
+
+document.querySelectorAll("#languageSelect, #languageSelectBottom").forEach(select => {
+    select.addEventListener("change", e => applyLanguage(e.target.value));
+});
+</script>
+
+<!-- ===============================================
+     MODALS - Contact, Terms, Privacy, Copyright
+     =============================================== -->
+
+<!-- CONTACT MODAL -->
+<div id="contactModal" class="modal hidden">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('contactModal')">&times;</button>
+        <h2 data-i18n="contactModalTitle">Contact Us</h2>
+        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+                <label for="contactName">Name / نام</label>
+                <input type="text" id="contactName" required>
+            </div>
+            <div class="form-group">
+                <label for="contactEmail">Email / ای میل</label>
+                <input type="email" id="contactEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="contactMessage">Message / پیغام</label>
+                <textarea id="contactMessage" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="modal-btn-submit">Send / بھیجیں</button>
+        </form>
+    </div>
+</div>
+
+<!-- TERMS OF SERVICE MODAL -->
+<div id="termsModal" class="modal hidden">
+    <div class="modal-content modal-large">
+        <button class="modal-close" onclick="closeModal('termsModal')">&times;</button>
+        <h2 data-i18n="termsModalTitle">Terms of Service</h2>
+        <div class="modal-body">
+            <h3>1. Use License</h3>
+            <p>Permission is granted to temporarily download one copy of the materials (information or software) on JaduLoader for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+            <ul>
+                <li>Modify or copy the materials</li>
+                <li>Use the materials for any commercial purpose or for any public display</li>
+                <li>Attempt to decompile or reverse engineer any software contained on JaduLoader</li>
+                <li>Remove any copyright or other proprietary notations from the materials</li>
+                <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+            </ul>
+
+            <h3>2. Disclaimer</h3>
+            <p>The materials on JaduLoader are provided on an 'as is' basis. JaduLoader makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+
+            <h3>3. Limitations</h3>
+            <p>In no event shall JaduLoader or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on JaduLoader.</p>
+
+            <h3>4. Accuracy of Materials</h3>
+            <p>The materials appearing on JaduLoader could include technical, typographical, or photographic errors. JaduLoader does not warrant that any of the materials on JaduLoader are accurate, complete, or current.</p>
+
+            <h3>5. Links</h3>
+            <p>JaduLoader has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by JaduLoader of the site.</p>
+
+            <h3>6. Modifications</h3>
+            <p>JaduLoader may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.</p>
+
+            <h3>7. Governing Law</h3>
+            <p>These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which JaduLoader operates, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
+        </div>
+    </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="privacyModal" class="modal hidden">
+    <div class="modal-content modal-large">
+        <button class="modal-close" onclick="closeModal('privacyModal')">&times;</button>
+        <h2 data-i18n="privacyModalTitle">Privacy Policy</h2>
+        <div class="modal-body">
+            <h3>1. Information Collection</h3>
+            <p>JaduLoader may collect information about you in connection with various activities such as accessing our website, downloading content, and using our services. This information may include:</p>
+            <ul>
+                <li>Search queries and keywords</li>
+                <li>IP address and browser information</li>
+                <li>Device information and cookies</li>
+                <li>Usage patterns and preferences</li>
+            </ul>
+
+            <h3>2. Use of Information</h3>
+            <p>The information we collect is used to:</p>
+            <ul>
+                <li>Improve and personalize your experience</li>
+                <li>Analyze website usage and trends</li>
+                <li>Prevent abuse and ensure security</li>
+                <li>Comply with legal obligations</li>
+            </ul>
+
+            <h3>3. Data Protection</h3>
+            <p>JaduLoader is committed to protecting your privacy. We implement appropriate security measures to protect personal information from unauthorized access, alteration, disclosure, or destruction.</p>
+
+            <h3>4. Third-Party Services</h3>
+            <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites. Please review their privacy policies before providing any personal information.</p>
+
+            <h3>5. Cookies</h3>
+            <p>JaduLoader uses cookies to enhance your experience. You may choose to disable cookies through your browser settings, but this may limit certain functionalities of the website.</p>
+
+            <h3>6. Changes to Privacy Policy</h3>
+            <p>JaduLoader reserves the right to modify this privacy policy at any time. Your continued use of the website indicates your acceptance of the updated policy.</p>
+
+            <h3>7. Contact Us</h3>
+            <p>If you have questions about our privacy practices, please contact us using the contact form on our website.</p>
+        </div>
+    </div>
+</div>
+
+<!-- COPYRIGHT CLAIMS MODAL -->
+<div id="copyrightModal" class="modal hidden">
+    <div class="modal-content modal-large">
+        <button class="modal-close" onclick="closeModal('copyrightModal')">&times;</button>
+        <h2 data-i18n="copyrightClaimsTitle">Copyright Claims</h2>
+        <div class="modal-body">
+            <h3>Intellectual Property Rights</h3>
+            <p>JaduLoader respects intellectual property rights and expects users to do the same. If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement, please provide the following information to our Copyright Claims team:</p>
+
+            <h3>Required Information:</h3>
+            <ul>
+                <li>Your name and contact information (email, phone)</li>
+                <li>Description of the copyrighted work that has been infringed</li>
+                <li>Specific URL(s) or location(s) of the infringing material</li>
+                <li>Proof of ownership of the copyrighted material</li>
+                <li>Detailed description of how the material infringes your copyright</li>
+                <li>Your statement under penalty of perjury that the information is accurate</li>
+            </ul>
+
+            <h3>Submitting a Claim:</h3>
+            <p>Please submit copyright claims using the contact form above or send a detailed written notice to our Copyright Claims team at:</p>
+            <p><strong>Email: copyright@jaduloader.com</strong></p>
+
+            <h3>DMCA Compliance</h3>
+            <p>JaduLoader complies with the Digital Millennium Copyright Act (DMCA). Upon receipt of a valid copyright claim, we will take appropriate action to remove or disable access to the infringing material.</p>
+
+            <h3>Response Time</h3>
+            <p>We typically respond to copyright claims within 48 hours of receipt. We reserve the right to investigate all claims and take appropriate legal action against users who file false or frivolous claims.</p>
+
+            <h3>Counter-Notice</h3>
+            <p>If you believe that material was removed in error, you may submit a counter-notice providing all necessary details and evidence supporting your position.</p>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL BACKDROP -->
+<div id="modalBackdrop" class="modal-backdrop hidden" onclick="closeAllModals()"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
