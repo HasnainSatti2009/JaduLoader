@@ -10,6 +10,8 @@ const cleanupFile = require("../utils/cleanup");
 
 const TEMP_DIR = path.join(__dirname, "../temp");
 
+const YOUTUBE_API_KEY = "AIzaSyDzNxVLJpR77W4NnFEXABLKPuydKdth53c";
+
 // ==========================================
 // CREATE TEMP DIRECTORY
 // ==========================================
@@ -150,7 +152,7 @@ exports.getVideoInfo = async (req, res) => {
                         maxResults: 10,
 
                         key:
-                            process.env.YOUTUBE_API_KEY
+                            YOUTUBE_API_KEY
                     },
 
                     timeout: 10000
