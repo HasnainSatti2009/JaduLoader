@@ -5,12 +5,15 @@ const { v4: uuidv4 } = require("uuid");
 const NodeCache = require("node-cache");
 const { spawn } = require("child_process");
 
-const ytDlpWrap = require("../utils/ytdlp");
+const { ensureBinary, getFfmpegPath } = require("../utils/ytdlp");
 const cleanupFile = require("../utils/cleanup");
 
 const TEMP_DIR = path.join(__dirname, "../temp");
 
 const YOUTUBE_API_KEY = "AIzaSyDzNxVLJpR77W4NnFEXABLKPuydKdth53c";
+
+// Download yt-dlp in background at startup so first request is fast
+ensureBinary().catch(err => console.error("yt-dlp setup failed:", err.message));
 
 // ==========================================
 // CREATE TEMP DIRECTORY
@@ -417,8 +420,6 @@ exports.downloadVideo = async (req, res) => {
             });
         }
 
-
-        
         // ==========================================
         // YOUTUBE URL CHECK
         // ==========================================
@@ -444,8 +445,12 @@ exports.downloadVideo = async (req, res) => {
         // ==========================================
         // YT-DLP (FIXED - Use spawn instead of exec)
         // ==========================================
-        childProcess = spawn("yt-dlp", [
+        const ytDlpPath = await ensureBinary();
+        const ffmpegPath = getFfmpegPath();
+
+        childProcess = spawn(ytDlpPath, [
             url,
+            ...(ffmpegPath ? ["--ffmpeg-location", ffmpegPath] : []),
             "-f", "bestvideo[height<=360][vcodec^=avc1]+bestaudio[acodec^=mp4a]/best[height<=360]",
             "--merge-output-format", "mp4",
             "--no-playlist",
@@ -751,8 +756,12 @@ exports.downloadAudio = async (req, res) => {
         // ==========================================
         // YT-DLP (FIXED - Use spawn)
         // ==========================================
-        childProcess = spawn("yt-dlp", [
+        const ytDlpPath = await ensureBinary();
+        const ffmpegPath = getFfmpegPath();
+
+        childProcess = spawn(ytDlpPath, [
             url,
+            ...(ffmpegPath ? ["--ffmpeg-location", ffmpegPath] : []),
             "-f", "bestaudio[acodec^=mp4a]/bestaudio",
             "-x",
             "--audio-format", "mp3",
